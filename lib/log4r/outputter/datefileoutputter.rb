@@ -101,6 +101,7 @@ module Log4r
       end
       makeNewFilename
       @out = File.new(@filename, (@trunc ? "w" : "a"))
+      File.symlink(@filename, File.join(File.dirname(@filename), @filebase))
       Logger.log_internal {
         "DateFileOutputter '#{@name}' now writing to #{@filename}"
       }
